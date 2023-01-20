@@ -19,7 +19,10 @@ class WrapperTest extends TestCase
      */
     public function testCheckPassword(string $pass, string $message): void
     {
-        $this->assertSame($message, (string)static::$wrapper->checkPassword($pass));
+        $result = static::$wrapper->checkPassword($pass);
+
+        $this->assertSame($message, (string)$result);
+        $this->assertSame($message, $result->getLocalizedMessage());
     }
 
     public function checkingPasswordProvider(): array

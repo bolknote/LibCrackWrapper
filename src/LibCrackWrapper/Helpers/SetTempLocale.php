@@ -9,7 +9,7 @@ trait SetTempLocale
 {
     protected function setTempLocale(callable $fn, ?string $locale, mixed ...$args): mixed
     {
-        if ($locale === null) {
+        if ($locale === null || $locale === 'C') {
             return $fn(...$args);
         } else {
             $old = setlocale(LC_MESSAGES, 0);

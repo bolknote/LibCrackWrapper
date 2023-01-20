@@ -69,12 +69,14 @@ class Wrapper
                     return $this->result ?? '';
                 } else {
                     return $this->setTempLocale(
-                            fn($message) => $this->ffi->dgettext("cracklib", $message),
+                            function ($message) {
+                                /** @noinspection PhpUndefinedMethodInspection */
+                                return $this->ffi->dgettext("cracklib", $message);
+                            },
                             $locale,
                             $this->result,
                     );
                 }
-
             }
 
             public function getCode(): int|false
@@ -86,6 +88,7 @@ class Wrapper
 
     public function getDefaultDictPath(): string
     {
+        /** @noinspection PhpUndefinedMethodInspection */
         return $this->ffi->GetDefaultCracklibDict();
     }
 
@@ -127,4 +130,3 @@ const char *GetDefaultCracklibDict(void);
 const char *FascistCheck(const char *pw, const char *dictpath);
 const char *FascistCheckUser(const char *pw, const char *dictpath, const char *user, const char *gecos);
 const char *dgettext(const char * domainname, const char * msgid);
-
