@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpMultipleClassDeclarationsInspection */
 declare(strict_types=1);
 
 namespace LibCrackWrapper;
@@ -32,7 +33,6 @@ class Wrapper
         if (PHP_OS === 'Darwin') {
             // Dirty hack for cracklib installed via brew
             if ($paths = glob('/usr/local/Cellar/cracklib/*/share/locale/')) {
-                /** @noinspection PhpUndefinedMethodInspection */
                 $this->ffi->bindtextdomain('cracklib', $paths[0]);
             }
         }
@@ -78,7 +78,6 @@ class Wrapper
                 } else {
                     return $this->setTempLocale(
                             function ($message) {
-                                /** @noinspection PhpUndefinedMethodInspection */
                                 return $this->ffi->dgettext("cracklib", $message);
                             },
                             $locale,
@@ -96,7 +95,6 @@ class Wrapper
 
     public function getDefaultDictPath(): string
     {
-        /** @noinspection PhpUndefinedMethodInspection */
         return $this->ffi->GetDefaultCracklibDict();
     }
 
