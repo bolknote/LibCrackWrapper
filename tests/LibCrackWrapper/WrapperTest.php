@@ -35,4 +35,10 @@ class WrapperTest extends TestCase
             [strrev('dinosaur'), 'it is based on a (reversed) dictionary word'],
         ];
     }
+
+    /** @covers \LibCrackWrapper\Wrapper::getDefaultDictPath */
+    public function testGetDefaultDictPath(): void
+    {
+        $this->assertNotEmpty(static::$wrapper->getDefaultDictPath());
+    }
 }

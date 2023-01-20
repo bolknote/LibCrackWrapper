@@ -5,12 +5,12 @@ namespace LibCrackWrapper;
 
 use FFI;
 use FFI\Exception;
+use LibCrackWrapper\Helpers\SetTempLocale;
 use RuntimeException;
 
-/** @noinspection PhpUnused */
 class Wrapper
 {
-    use setTempLocale;
+    use SetTempLocale;
     private FFI $ffi;
 
     public function __construct()
@@ -33,7 +33,7 @@ class Wrapper
     private function result(?string $result): object
     {
         return new class($this->ffi, $result) {
-            use setTempLocale;
+            use SetTempLocale;
 
             private const RESULTS = [
                 null,
@@ -77,7 +77,6 @@ class Wrapper
 
             }
 
-            /** @noinspection PhpUnused */
             public function getCode(): int|false
             {
                 return array_search($this->result, static::RESULTS,true);

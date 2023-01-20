@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace LibCrackWrapper;
+namespace LibCrackWrapper\Helpers;
 
 use RuntimeException;
 
-trait setTempLocale
+trait SetTempLocale
 {
     protected function setTempLocale(callable $fn, ?string $locale, mixed ...$args): mixed
     {
