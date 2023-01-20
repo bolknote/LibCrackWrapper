@@ -85,14 +85,11 @@ class Wrapper
         };
     }
 
-    /** @noinspection PhpUnused */
-
     public function getDefaultDictPath(): string
     {
         return $this->ffi->GetDefaultCracklibDict();
     }
 
-    /** @noinspection PhpUnused */
     public function checkPassword(string $password, string $dictpath = null): object
     {
         return $this->result(
@@ -105,7 +102,6 @@ class Wrapper
     }
 
     /** @noinspection PhpUnused */
-
     public function checkUserAndPassword(
             string $user,
             string $password,
