@@ -25,6 +25,15 @@ class WrapperTest extends TestCase
         $this->assertSame($message, $result->getLocalizedMessage());
     }
 
+    /**
+     * @covers \LibCrackWrapper\Wrapper::checkPassword
+    */
+    public function testCheckPasswordLocalized(): void
+    {
+        $result = static::$wrapper->checkPassword('123');
+        $this->assertNotSame((string) $result, $result->getLocalizedMessage('fr_FR'));
+    }
+
     public function checkingPasswordProvider(): array
     {
         return [

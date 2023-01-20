@@ -28,6 +28,14 @@ class Wrapper
         } catch (Exception $e) {
             throw new RuntimeException($e->getMessage(), $e->getCode());
         }
+
+        if (PHP_OS === 'Darwin') {
+            // Dirty hack for cracklib installed via brew
+            if ($paths = glob('/usr/local/Cellar/cracklib/*/share/locale/')) {
+                /** @noinspection PhpUndefinedMethodInspection */
+                $this->ffi->bindtextdomain('cracklib', $paths[0]);
+            }
+        }
     }
 
     private function result(?string $result): object
@@ -130,3 +138,4 @@ const char *GetDefaultCracklibDict(void);
 const char *FascistCheck(const char *pw, const char *dictpath);
 const char *FascistCheckUser(const char *pw, const char *dictpath, const char *user, const char *gecos);
 const char *dgettext(const char * domainname, const char * msgid);
+const char *bindtextdomain (const char * domainname, const char * dirname);

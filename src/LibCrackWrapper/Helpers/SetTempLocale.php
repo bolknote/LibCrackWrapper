@@ -12,15 +12,15 @@ trait SetTempLocale
         if ($locale === null || $locale === 'C') {
             return $fn(...$args);
         } else {
-            $old = setlocale(LC_MESSAGES, 0);
-            if (setlocale(LC_MESSAGES, $locale) === false) {
+            $old = setlocale(LC_ALL, 0);
+            if (setlocale(LC_ALL, $locale) === false) {
                 throw new RuntimeException("Invalid locale: {$locale}");
             }
 
             try {
                 return $fn(...$args);
             } finally {
-                setlocale(LC_MESSAGES, $old);
+                setlocale(LC_ALL, $old);
             }
         }
     }
