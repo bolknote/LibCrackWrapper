@@ -61,17 +61,19 @@ final class CLIBackend extends BackendInterface
 
     public function checkPassword(string $password, string $dictpath = null): Result
     {
-        if ($dictpath !== null) {
-            throw new RuntimeException('Specifying a dictionary is not implemented.');
-        }
-
         $descriptorspec = [
             ["pipe", "r"],
             ["pipe", "w"],
             ["file", "/dev/null", 'w'],
         ];
 
-        $process = proc_open($this->librack, $descriptorspec, $pipes);
+        $cmd = $this->librack;
+
+        if ($dictpath !== null) {
+            $cmd .= ' ' . escapeshellarg($dictpath);
+        }
+
+        $process = proc_open($cmd, $descriptorspec, $pipes);
         fwrite($pipes[0], $password . "\n");
         fclose($pipes[0]);
 
