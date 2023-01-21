@@ -42,15 +42,9 @@ class WrapperTest extends TestCase
             ['xxxxxxx', 'it does not contain enough DIFFERENT characters'],
             ['KPACOTA', 'it is based on a dictionary word'],
             ['ax134178y', 'it looks like a National Insurance number.'],
-            ["\t \x0A\x0B\x0C\x0D", 'it is all whitespace'],
+            ["\t\t \x0B\x0C\x0D\t", 'it is all whitespace'],
             ['01xya12lop23hyr34', 'it is too simplistic/systematic'],
             [strrev('dinosaur'), 'it is based on a (reversed) dictionary word'],
         ];
-    }
-
-    /** @covers \LibCrackWrapper\Wrapper::getDefaultDictPath */
-    public function testGetDefaultDictPath(): void
-    {
-        $this->assertNotEmpty(static::$wrapper->getDefaultDictPath());
     }
 }

@@ -1,17 +1,27 @@
 <?php
 declare(strict_types=1);
 
-namespace LibCrackWrapper\Helpers;
+namespace LibCrackWrapper\Classes;
 
 use RuntimeException;
 
-trait SetTempLocale
+abstract class BackendInterface
 {
-    protected function setTempLocale(callable $fn, ?string $locale, mixed ...$args): mixed
+    abstract public function checkPassword(string $password, string $dictpath = null): Result;
+
+    abstract public function checkUserAndPassword(
+        string $user,
+        string $password,
+        string $userinfo,
+        string $dictpath = null
+    ): Result;
+
+    protected function setTempLocale(callable $fn, ?string $locale, mixed ...$args): ?string
     {
         if ($locale === null || $locale === 'C') {
             return $fn(...$args);
         } else {
+
             $old = setlocale(LC_ALL, 0);
             if (setlocale(LC_ALL, $locale) === false) {
                 throw new RuntimeException("Invalid locale: {$locale}");
