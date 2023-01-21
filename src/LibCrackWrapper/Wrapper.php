@@ -31,9 +31,13 @@ class Wrapper
         }
 
         if (PHP_OS === 'Darwin') {
-            // Dirty hack for cracklib installed via brew
-            if ($paths = glob('/usr/local/Cellar/cracklib/*/share/locale/')) {
-                $this->ffi->bindtextdomain('cracklib', $paths[0]);
+            $current = $this->ffi->bindtextdomain('cracklib', null);
+
+            if (stripos('/cracklib/', $current) === false) {
+                // Dirty hack for cracklib installed via brew
+                if ($paths = glob('/usr/local/Cellar/cracklib/*/share/locale/')) {
+                    $this->ffi->bindtextdomain('cracklib', $paths[0]);
+                }
             }
         }
     }

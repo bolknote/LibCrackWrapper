@@ -1,7 +1,7 @@
 <?php
 /** @noinspection PhpMultipleClassDeclarationsInspection
  *
- * @method string bindtextdomain(string $domainname, string $dirname)
+ * @method string bindtextdomain(string $domainname, null|string $dirname)
  * @method string dgettext(string $domainname, string $msgid)
  * @method string GetDefaultCracklibDict()
  * @method null|string FascistCheck(string $pw, string $dictpath);
