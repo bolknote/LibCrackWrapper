@@ -5,7 +5,7 @@ This library allows you to check the password strength
 
 ```php
 $checker = new \LibCrackWrapper\Wrapper();
-$result = $checked->checkPassword($password);
+$result = $checker->checkPassword($password);
 
 if ($result->isStrongPassword()) {
      echo "Your password is good enough.\n";
