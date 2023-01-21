@@ -92,6 +92,6 @@ final class CLIBackend extends BackendInterface
         string $dictpath = null
     ): Result
     {
-        // TODO: Implement checkUserAndPassword() method.
+        throw new RuntimeException('Not implemented yet');
     }
 }
