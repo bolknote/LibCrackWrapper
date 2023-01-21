@@ -83,6 +83,11 @@ final class FFIBackend extends BackendInterface
             [$this, 'localizeCallback']
         );
     }
+
+    public function getBackendName(): string
+    {
+        return 'FFI';
+    }
 }
 
 // Cdefs for FFI

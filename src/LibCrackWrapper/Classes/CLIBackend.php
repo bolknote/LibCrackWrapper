@@ -96,4 +96,9 @@ final class CLIBackend extends BackendInterface
     {
         throw new RuntimeException('Not implemented yet');
     }
+
+    public function getBackendName(): string
+    {
+        return 'CLI';
+    }
 }

@@ -48,6 +48,38 @@ class WrapperTest extends TestCase
         );
     }
 
+    /**
+     * @covers \LibCrackWrapper\Wrapper::checkUserAndPassword
+     * @dataProvider checkingkUserAndPasswordProvider
+     */
+    public function testCheckUserAndPassword(
+        string $pass,
+        string $user,
+        string $userinfo,
+        string $message,
+    ): void
+    {
+        if (static::$wrapper->getBackendName() === 'FFI') {
+            $this->assertSame(
+                (string) static::$wrapper->checkUserAndPassword($pass, $user, $userinfo),
+                $message
+            );
+        } else {
+            $this->markTestSkipped();
+        }
+    }
+
+    public function checkingkUserAndPasswordProvider(): array
+    {
+        return [
+            ['username', 'username', '', 'it is based on your username'],
+            ['username', '', 'username', 'it is based upon your password entry'],
+            ['hxuzohtmn', '', 'hxu zoh tmn', 'it is derived from your password entry'],
+            ['EStepanis', '', 'Evgeny Stepanischev', 'it is derivable from your password entry'],
+            ['SEvgen', '', 'Evgeny Stepanischev', "it's derivable from your password entry"],
+        ];
+    }
+
     public function checkingPasswordProvider(): array
     {
         return [

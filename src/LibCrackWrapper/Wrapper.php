@@ -24,6 +24,11 @@ class Wrapper
         return $this->backend->checkPassword($password, $dictpath);
     }
 
+    public function getBackendName(): string
+    {
+        return $this->backend->getBackendName();
+    }
+
     /** @noinspection PhpUnused */
     public function checkUserAndPassword(
             string $password,

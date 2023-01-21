@@ -16,6 +16,8 @@ abstract class BackendInterface
         string $dictpath = null
     ): Result;
 
+    abstract public function getBackendName(): string;
+
     protected function setTempLocale(callable $fn, ?string $locale, mixed ...$args): ?string
     {
         if ($locale === null || $locale === 'C') {
