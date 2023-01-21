@@ -26,12 +26,12 @@ class Wrapper
 
     /** @noinspection PhpUnused */
     public function checkUserAndPassword(
-            string $user,
             string $password,
+            string $user,
             string $userinfo,
             string $dictpath = null
     ): Result
     {
-        return $this->backend->checkUserAndPassword($user, $password, $userinfo, $dictpath);
+        return $this->backend->checkUserAndPassword($password, $user, $userinfo, $dictpath);
     }
 }

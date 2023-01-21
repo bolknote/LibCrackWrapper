@@ -10,8 +10,8 @@ abstract class BackendInterface
     abstract public function checkPassword(string $password, string $dictpath = null): Result;
 
     abstract public function checkUserAndPassword(
-        string $user,
         string $password,
+        string $user,
         string $userinfo,
         string $dictpath = null
     ): Result;

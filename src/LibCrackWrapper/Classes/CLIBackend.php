@@ -86,8 +86,8 @@ final class CLIBackend extends BackendInterface
     }
 
     public function checkUserAndPassword(
-        string $user,
         string $password,
+        string $user,
         string $userinfo,
         string $dictpath = null
     ): Result
