@@ -29,4 +29,9 @@ final class Result
     {
         return ($this->localizeCallback)($this->getMessage(), $locale);
     }
+
+    public function isStrongPassword(): bool
+    {
+        return $this->getCode() === Constants::OK_CODE;
+    }
 }

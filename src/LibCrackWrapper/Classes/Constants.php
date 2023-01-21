@@ -5,6 +5,8 @@ namespace LibCrackWrapper\Classes;
 
 final class Constants
 {
+    public const OK_CODE = 0;
+
     public const STR_RESULTS = [
         null,
         'it is based on your username',

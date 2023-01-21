@@ -34,6 +34,20 @@ class WrapperTest extends TestCase
         $this->assertNotSame((string) $result, $result->getLocalizedMessage('fr_FR'));
     }
 
+    /**
+     * @covers \LibCrackWrapper\Classes\Result::isStrongPassword
+     */
+    public function testCheckPasswordOK(): void
+    {
+        $this->assertTrue(
+            static::$wrapper->checkPassword('jxtym[jhjibqgfhjkm')->isStrongPassword()
+        );
+
+        $this->assertFalse(
+            static::$wrapper->checkPassword('123')->isStrongPassword()
+        );
+    }
+
     public function checkingPasswordProvider(): array
     {
         return [
