@@ -41,7 +41,7 @@ final class CLIBackend extends BackendInterface
     /** @noinspection PhpComposerExtensionStubsInspection */
     public function localizeCallback(string $message, string $locale = 'C'): string
     {
-        if ($locale === 'C') {
+        if ($locale === 'C' || !extension_loaded('gettext')) {
             return $message;
         } else {
             return $this->setTempLocale(
