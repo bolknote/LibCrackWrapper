@@ -19,6 +19,6 @@ final class CLIBackendTest extends WrapperTest
     public function testCheckUserAndPassword(): void
     {
         $this->expectException(RuntimeException::class);
-        FFIBackendTest::$wrapper->checkUserAndPassword('', '', '');
+        CLIBackendTest::$wrapper->checkUserAndPassword('', '', '');
     }
 }
