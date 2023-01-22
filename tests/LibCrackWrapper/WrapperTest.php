@@ -4,15 +4,9 @@ namespace LibCrackWrapper;
 
 use PHPUnit\Framework\TestCase;
 
-class WrapperTest extends TestCase
+abstract class WrapperTest extends TestCase
 {
-    static private Wrapper $wrapper;
-
-    static public function setUpBeforeClass(): void
-    {
-        static::$wrapper = new Wrapper();
-    }
-
+    static protected Wrapper $wrapper;
     /**
      * @covers \LibCrackWrapper\Wrapper::checkPassword
      * @dataProvider checkingPasswordProvider
@@ -47,39 +41,6 @@ class WrapperTest extends TestCase
         $this->assertFalse(
             static::$wrapper->checkPassword('123')->isStrongPassword()
         );
-    }
-
-    /**
-     * @covers \LibCrackWrapper\Wrapper::checkUserAndPassword
-     * @dataProvider checkingkUserAndPasswordProvider
-     */
-    public function testCheckUserAndPassword(
-        string $pass,
-        string $user,
-        string $userinfo,
-        string $message,
-        int $code,
-    ): void
-    {
-        if (static::$wrapper->getBackendName() !== 'FFI') {
-            $this->markTestSkipped();
-        }
-
-        $result = static::$wrapper->checkUserAndPassword($pass, $user, $userinfo);
-
-        $this->assertSame((string) $result, $message);
-        $this->assertSame($result->getCode(), $code);
-    }
-
-    public function checkingkUserAndPasswordProvider(): array
-    {
-        return [
-            ['username', 'username', '', 'it is based on your username', 1],
-            ['username', '', 'username', 'it is based upon your password entry', 2],
-            ['hxuzohtmn', '', 'hxu zoh tmn', 'it is derived from your password entry', 3],
-            ['EStepanis', '', 'Evgeny Stepanischev', 'it is derivable from your password entry', 4],
-            ['SEvgen', '', 'Evgeny Stepanischev', "it's derivable from your password entry", 5],
-        ];
     }
 
     public function checkingPasswordProvider(): array

@@ -14,7 +14,8 @@
          verbose="true">
     <testsuites>
         <testsuite name="default">
-            <directory>tests</directory>
+            <file>tests/LibCrackWrapper/CLIBackendTest.php</file>
+            <file>tests/LibCrackWrapper/FFIBackendTest.php</file>
         </testsuite>
     </testsuites>
 

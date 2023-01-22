@@ -7,11 +7,19 @@ use LibCrackWrapper\Classes\{BackendInterface, FFIBackend, CLIBackend, Result};
 
 class Wrapper
 {
+    public const BACKEND_AUTO = 'auto';
+    public const BACKEND_FFI = 'ffi';
+    public const BACKEND_CLI = 'cli';
+
     private BackendInterface $backend;
 
-    public function __construct()
+    public function __construct(string $backend = self::BACKEND_AUTO)
     {
-        $this->backend = $this->checkFFI() ? new FFIBackend() : new CLIBackend();
+        $this->backend = match ($backend) {
+            self::BACKEND_AUTO => $this->checkFFI() ? new FFIBackend() : new CLIBackend(),
+            self::BACKEND_CLI  => new CLIBackend(),
+            self::BACKEND_FFI  => new FFIBackend(),
+        };
     }
 
     private function checkFFI(): bool
