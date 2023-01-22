@@ -94,7 +94,7 @@ final class CLIBackend extends BackendInterface
         string $dictpath = null
     ): Result
     {
-        throw new RuntimeException('Not implemented yet');
+        throw new RuntimeException('Cannot be implemented');
     }
 
     public function getBackendName(): string
