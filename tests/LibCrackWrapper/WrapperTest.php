@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 abstract class WrapperTest extends TestCase
 {
-    static protected Wrapper $wrapper;
+    static protected $wrapper;
     /**
      * @covers \LibCrackWrapper\Wrapper::checkPassword
      * @dataProvider checkingPasswordProvider

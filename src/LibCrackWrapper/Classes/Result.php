@@ -5,10 +5,14 @@ namespace LibCrackWrapper\Classes;
 
 final class Result
 {
-    public function __construct(
-        private readonly ?string $message,
-        private readonly mixed   $localizeCallback,
-    ) {}
+    private $message;
+    private $localizeCallback;
+
+    public function __construct(?string $message, callable  $localizeCallback)
+    {
+        $this->message = $message;
+        $this->localizeCallback = $localizeCallback;
+    }
 
     public function __toString()
     {

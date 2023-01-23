@@ -7,7 +7,7 @@ use RuntimeException;
 
 final class CLIBackend extends BackendInterface
 {
-    private ?string $librack;
+    private $librack;
 
     public function __construct()
     {
@@ -45,7 +45,9 @@ final class CLIBackend extends BackendInterface
             return $message;
         } else {
             return $this->setTempLocale(
-                fn ($message) => dgettext("cracklib", $message),
+                static function ($message) {
+                    return dgettext("cracklib", $message);
+                },
                 $locale,
                 $message,
             );

@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 namespace LibCrackWrapper;
-use LibCrackWrapper\Classes\{BackendInterface, FFIBackend, CLIBackend, Result};
+use LibCrackWrapper\Classes\{FFIBackend, CLIBackend, Result};
+use RuntimeException;
 
 class Wrapper
 {
@@ -11,15 +12,23 @@ class Wrapper
     public const BACKEND_FFI = 'FFI';
     public const BACKEND_CLI = 'CLI';
 
-    private BackendInterface $backend;
+    private $backend;
 
     public function __construct(string $backend = self::BACKEND_AUTO)
     {
-        $this->backend = match ($backend) {
-            self::BACKEND_AUTO => $this->checkFFI() ? new FFIBackend() : new CLIBackend(),
-            self::BACKEND_CLI  => new CLIBackend(),
-            self::BACKEND_FFI  => new FFIBackend(),
-        };
+        switch ($backend) {
+            case self::BACKEND_AUTO:
+                $this->backend = $this->checkFFI() ? new FFIBackend() : new CLIBackend();
+                break;
+            case self::BACKEND_CLI:
+                $this->backend = new CLIBackend();
+                break;
+            case self::BACKEND_FFI:
+                $this->backend = new FFIBackend();
+                break;
+            default:
+                throw new RuntimeException('Unsupported backend');
+        }
     }
 
     private function checkFFI(): bool

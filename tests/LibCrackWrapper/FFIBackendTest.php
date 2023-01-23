@@ -30,7 +30,7 @@ final class FFIBackendTest extends WrapperTest
         string $user,
         string $userinfo,
         string $message,
-        int $code,
+        int $code
     ): void
     {
         $result = FFIBackendTest::$wrapper->checkUserAndPassword($pass, $user, $userinfo);
