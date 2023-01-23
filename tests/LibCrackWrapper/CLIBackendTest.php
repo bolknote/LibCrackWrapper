@@ -21,4 +21,10 @@ final class CLIBackendTest extends WrapperTest
         $this->expectException(RuntimeException::class);
         CLIBackendTest::$wrapper->checkUserAndPassword('', '', '');
     }
+
+    /** @covers \LibCrackWrapper\Wrapper::getBackendName */
+    public function testGetBackendName(): void
+    {
+        $this->assertSame(CLIBackendTest::$wrapper->getBackendName(), 'CLI');
+    }
 }

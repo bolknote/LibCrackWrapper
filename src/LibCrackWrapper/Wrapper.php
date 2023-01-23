@@ -8,8 +8,8 @@ use LibCrackWrapper\Classes\{BackendInterface, FFIBackend, CLIBackend, Result};
 class Wrapper
 {
     public const BACKEND_AUTO = 'auto';
-    public const BACKEND_FFI = 'ffi';
-    public const BACKEND_CLI = 'cli';
+    public const BACKEND_FFI = 'FFI';
+    public const BACKEND_CLI = 'CLI';
 
     private BackendInterface $backend;
 

@@ -15,6 +15,12 @@ final class FFIBackendTest extends WrapperTest
         FFIBackendTest::$wrapper = new Wrapper(Wrapper::BACKEND_FFI);
     }
 
+    /** @covers \LibCrackWrapper\Wrapper::getBackendName */
+    public function testGetBackendName(): void
+    {
+        $this->assertSame(FFIBackendTest::$wrapper->getBackendName(), 'FFI');
+    }
+
     /**
      * @covers \LibCrackWrapper\Wrapper::checkUserAndPassword
      * @dataProvider checkingkUserAndPasswordProvider
