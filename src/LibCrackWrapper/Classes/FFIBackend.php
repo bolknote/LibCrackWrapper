@@ -22,13 +22,13 @@ final class FFIBackend extends BackendInterface
         );
 
         try {
-            $lib = PHP_OS === 'Darwin' ? 'libcrack.2.dylib' : 'libcrack.so.2';
+            $lib = PHP_OS_FAMILY === 'Darwin' ? 'libcrack.2.dylib' : 'libcrack.so.2';
             $this->ffi = FFI::cdef($cdefs, $lib);
         } catch (Exception $e) {
             throw new RuntimeException($e->getMessage(), $e->getCode());
         }
 
-        if (PHP_OS === 'Darwin') {
+        if (PHP_OS_FAMILY === 'Darwin') {
             $current = $this->ffi->bindtextdomain('cracklib', null);
 
             if (stripos('/cracklib/', $current) === false) {

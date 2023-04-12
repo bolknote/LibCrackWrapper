@@ -26,7 +26,7 @@ final class CLIBackend extends BackendInterface
             throw new RuntimeException('Cannot find cracklib-check utility');
         }
 
-        if (PHP_OS === 'Darwin' && extension_loaded('gettext')) {
+        if (PHP_OS_FAMILY === 'Darwin' && extension_loaded('gettext')) {
             $current = bindtextdomain('cracklib', null);
 
             if (stripos('/cracklib/', $current) === false) {
