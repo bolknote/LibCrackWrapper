@@ -43,7 +43,7 @@ abstract class WrapperTest extends TestCase
         );
     }
 
-    public function checkingPasswordProvider(): array
+    public static function checkingPasswordProvider(): array
     {
         return [
             ['abc',  'it is WAY too short', 7],

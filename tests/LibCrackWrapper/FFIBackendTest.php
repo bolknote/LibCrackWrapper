@@ -39,7 +39,7 @@ final class FFIBackendTest extends WrapperTest
         $this->assertSame($result->getCode(), $code);
     }
 
-    public function checkingkUserAndPasswordProvider(): array
+    public static function checkingkUserAndPasswordProvider(): array
     {
         return [
             ['username', 'username', '', 'it is based on your username', 1],
