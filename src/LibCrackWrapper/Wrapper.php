@@ -33,7 +33,7 @@ class Wrapper
 
     private function checkFFI(): bool
     {
-        return extension_loaded('ffi');
+        return extension_loaded('ffi') && ini_get('ffi.enable') === '1';
     }
 
     public function checkPassword(string $password, string $dictpath = null): Result
