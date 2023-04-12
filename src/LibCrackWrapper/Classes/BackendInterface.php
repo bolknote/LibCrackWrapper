@@ -23,7 +23,7 @@ abstract class BackendInterface
         if ($locale === null || $locale === 'C') {
             return $fn(...$args);
         } else {
-            $old_language = getenv('LANGUAGE');
+            $old_language = getenv('LANGUAGE') ?: '';
             $old_locale   = setlocale(LC_ALL, 0);
             if (setlocale(LC_ALL, $locale) === false) {
                 throw new RuntimeException("Invalid locale: {$locale}");
@@ -35,9 +35,7 @@ abstract class BackendInterface
                 return $fn(...$args);
             } finally {
                 setlocale(LC_ALL, $old_locale);
-                if ($old_language !== false) {
-                    putenv("LANGUAGE=$old_language");
-                }
+                putenv("LANGUAGE=$old_language");
             }
         }
     }
