@@ -33,7 +33,10 @@ class Wrapper
 
     private function checkFFI(): bool
     {
-        return extension_loaded('ffi') && ini_get('ffi.enable') === '1';
+        return extension_loaded('ffi') && (
+                ini_get('ffi.enable') === '1' ||
+                ini_get('ffi.enable') === 'preload' && PHP_SAPI === 'cli'
+            );
     }
 
     public function checkPassword(string $password, string $dictpath = null): Result
