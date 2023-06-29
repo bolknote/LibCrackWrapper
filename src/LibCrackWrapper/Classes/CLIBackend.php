@@ -13,7 +13,7 @@ final class CLIBackend extends BackendInterface
     {
         $this->librack = null;
 
-        foreach (explode(PATH_SEPARATOR, getenv('PATH')) as $path)
+        foreach (explode(PATH_SEPARATOR, (string) getenv('PATH')) as $path)
         {
             $path .= '/cracklib-check';
             if (file_exists($path) && is_executable($path)) {
